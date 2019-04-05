@@ -51,25 +51,25 @@
   ?>
 
   <?php
-	session_start();
-	$tempo_atual = @mktime(date("Y/m/d H:i:s"));
-	$tempo_permitido = 1800; // tempo em segundos até redirecionar
-	$fim = "";
-	if(@$_SESSION['Cookie_countdown']=="") {
-	$tempo_entrada = @mktime(date("Y/m/d H:i:s"));
-	$tempo_cookie = '3600'; // em segundos
-	$_SESSION['Cookie_countdown'] = $tempo_entrada;
-	} else {
-	$tempo_gravado = $_SESSION['Cookie_countdown'];
-	$tempo_gerado = $tempo_atual-$tempo_gravado;
-	$fim.= $tempo_permitido-$tempo_gerado;
-	if($fim <= 0) {
-	echo "tempo esgotado";
-	$_SESSION['Cookie_countdown'] = "";
-	} else {
-	}
-	}
-?>
+		$tempo_atual = time();
+		$tempo_permitido = 1800; // tempo em segundos até redirecionar
+		$fim = -1;
+		
+		if(isset($_SESSION['Cookie_countdown'])) {
+			$tempo_gravado = $_SESSION['Cookie_countdown'];
+			$tempo_gerado = $tempo_atual-$tempo_gravado;
+			$fim = $tempo_permitido - $tempo_gerado;
+			if($fim <= 0) {
+				echo "tempo esgotado";
+				$_SESSION['Cookie_countdown'] = "";
+			} else {
+				$_SESSION['Cookie_countdown'] = time(); // tempo começa a contar novamente
+				$tempo_gravado = $_SESSION['Cookie_countdown'];
+				$tempo_gerado = $tempo_atual-$tempo_gravado;
+				$fim = $tempo_permitido - $tempo_gerado;
+			}
+		}
+	?>
 
 
   
@@ -81,8 +81,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <script language="JavaScript">
-		var contador = '<?php if($fim=="") { echo $tempo_permitido+1; } else { echo "$fim"; } ?>';
+     <script language="JavaScript">
+		var contador = '<?php if($fim <= 0) { echo $tempo_permitido+1; } else { echo "$fim"; } ?>';
 		function Conta() {
 		if(contador <= 0) {
 		location.href='telalogin.php';
@@ -90,7 +90,10 @@
 		}
 		contador = contador-1;
 		setTimeout("Conta()", 1000);
-		document.getElementById("valor").innerHTML = contador;
+		var minutos = Math.floor(contador / 60);
+		var segundos = contador - minutos * 60;
+
+		document.getElementById("valor").innerHTML = minutos + ":" + segundos;
 		}
 		window.onload = function() {
 		Conta();
