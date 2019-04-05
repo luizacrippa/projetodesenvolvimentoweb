@@ -1,0 +1,38 @@
+body{
+	background-color: pink;
+}
+
+div.div_login{
+	height: 180px;
+	width: 250px;
+	margin-left: 520px;
+	margin-top: 100px;
+	background-color: white;
+}
+
+h3{
+	text-align: center;
+	margin-top: 5px;
+}
+
+input{
+	margin-top: 15px;
+	margin-left: 40px;
+}
+
+button{
+	margin-top: 10px;
+	margin-left: 100px;
+}
+
+.jumbotron{
+	background-color: pink;
+}
+
+.btn{
+	text-align: center;
+}
+
+footer{
+	background-color: pink;
+}
