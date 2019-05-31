@@ -21,9 +21,9 @@
         <div class="row navbar">
           <div class="col-md-1">
           </div>
-          <button type="submit" name= "cliente" class="btn btn-danger mb-2 ml-4 col-md-2">Clientes</button>
-          <button type="submit" name="produto" class="btn btn-danger mb-2 ml-4 col-md-2">Produtos</button>
-          <button type="submit" name="pedido" class="btn btn-danger mb-2 ml-4 col-md-2">Pedidos</button>
+          <button type="submit" name= "btncliente" class="btn btn-danger mb-2 ml-4 col-md-2">Clientes</button>
+          <button type="submit" name="btnproduto" class="btn btn-danger mb-2 ml-4 col-md-2">Produtos</button>
+          <button type="submit" name="btnpedido" class="btn btn-danger mb-2 ml-4 col-md-2">Pedidos</button>
           <button type="submit" name="index" class="btn btn-danger mb-2 ml-4 col-md-2">Sair</button>
           <div class="col-md-1">
           </div>

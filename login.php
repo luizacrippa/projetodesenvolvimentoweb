@@ -14,6 +14,5 @@
 		include('logoff.php');
 	}
 	
-	echo "Visualizações=".$_SESSION['views'];
 
 ?>

@@ -1,139 +1,193 @@
-<?php require 'validaLogin.php'; ?>
+<?php require 'validaLogin.php';
+
+$db = mysqli_connect('localhost','root','12345','db_abc_bolinhas');
+
+date_default_timezone_set('America/Sao_Paulo');
+?>
 
 <div class="container">
-
 	<div class="row formulario">
-    	<div class="col-md-12">
-      		<div class="display-4"><b><i>Pedidos</i></b></div>
-    	</div>
-  	</div>
-  	<br>
-    
-	    <div class="row cadastro">
-	      <div class="col-md-12">
-	        <form class="form-group needs-validation justify-content-center" method="POST" novalidate>
-
-	          	<div class="form-row">
-
-		          	<div class="form-group col-md-1">
-		            	<label for="inputPedido">Pedido: </label>
-		            	<input name="pedido"  type="number" class="form-control" id="inputPedido" placeholder="Número" required="">
-		         	 </div>
-		          	<div class="form-group col-md-4">
-		              <label for="phone_with_ddd">Telefone:</label>
-		              <input name="telefone"  type="text" class="form-control" maxlength="12" placeholder="(__)_____-______" id="phone_with_ddd" required>
-		          	</div>
-		          	<div class="form-group col-md-2">
-		              <label for="inputCodigo">Código Cliente:</label>
-		              <input name="codigo"  type="text" class="form-control" id="inputCodigo" placeholder="Código" required="">
-		          	</div>
-		          	<div class="form-group col-md-5">
-		              <label for="inputNome">Nome Cliente:</label>
-		              <input name="nome"  type="text" class="form-control" id="inputNome" placeholder="Nome completo do Cliente" required="">
-		          	</div>
-		     	</div>
-
-		     	<div class="form-row">
-
-		     		<div class="form-group col-md-5">
-			            <label for="inputAddress">Endereço:</label>
-			            <input name="endereco"  type="text" class="form-control" id="inputAddress" placeholder="Nome da rua" required="">
-			        </div>
-			        <div class="form-group col-md-1">
-		            	<label for="numero">Número:</label>
-		            	<input name="numero"  type="text" class="form-control" id="numero" placeholder="" required="">
-		          	</div>
-		          	<div class="form-group col-md-2">
-		              	<label for="cep">CEP:</label>
-		              	<input name="cep"  type="text" class="form-control" id="cep" placeholder="88500-XXX" required="">
-		            </div>
-		            <div class="form-group col-md-2">
-		              	<label for="inputState">Bairro:</label>
-		              	<input name="bairro"  type="text" class="form-control" id="inputNeighborhood" placeholder="Ex.: Coral" required="">
-		            </div>
-		            <div class="form-group col-md-2">
-		             	<label for="inputCity">Cidade:</label>
-		              	<input name="cidade"  type="text" class="form-control" id="inputCity" placeholder="Ex.: Lages" required="">
-		            </div>
-	    	            
-	          	</div>
-
-	          <div class="form-row">
-	            	<div class="form-group col-md-9">
-			            <label for="inputObs">Obs.: </label>
-			            <input name="observacao"  type="text" class="form-control" id="inputObs" placeholder="Digite aqui sua observação do endereço" name="observacao" required>
-		            </div>
-		            <div class="form-group col-md-3">
-			            <label for="inputData">Data/Hora Local: </label>
-			            <input name="hora"  type="datetime-local" class="form-control" id="inputData" name="data" required>
-		          	</div>
-	            
-	          </div>
-
-	          <hr>
-		        <div class="form-row">
-		          <div class="form-group col-md-1">
-		            <label for="inputProduto">Produto: </label>
-		            <input type="text" class="form-control" id="inputProduto" placeholder="Código" name="codigoProduto" required>
-		          </div>
-		          <div class="form-group col-md-4">
-		            <label for="inputDesc">Descrição: </label>
-		            <input type="text" class="form-control" id="inputDesc" placeholder="Digite descrição completa para vender" name="descricaoProduto" required>
-		          </div>
-		          <div class="form-group col-md-1">
-		            <label for="inputPreco">Preço: </label>
-		            <input type="text" class="form-control" id="inputPreco" placeholder="R$: " name="preco" required>
-		          </div>
-		          <div class="form-group col-md-1">
-		            <label for="inputQntd">Quant: </label>
-		            <input type="text" class="form-control" id="inputQntd" name="quantidade" required>
-		          </div>
-		          <div class="form-group col-md-1">
-		            <label for="inputTotal">Total R$: </label>
-		            <input type="text" class="form-control" id="inputTotal" name="total" required>
-		          </div>
-		          <div class="form-group col-md-4">
-		            <label for="inputObsProd">Obs.: </label>
-		            <input type="text" class="form-control" id="inputObsProd" name="obsProduto" required>
-		          </div>
-		        </div>
-
-		        <div id="botao">
-		          <button type="submit" class="btn btn-danger mb-2" id="adicionarPedido" name="adicionarPedido">Adicionar</button>
-		        </div>
-		        <hr>
-		      </form>
-
-		      <table class="table table-bordered">
-		        <thead>
-		          <tr>
-		            <th scope="col">Código</th>
-		            <th scope="col">Descrição</th>
-		            <th scope="col">Preço</th>
-		            <th scope="col">Quantidade</th>
-		            <th scope="col">Total R$</th>
-		            <th scope="col">Obs.:</th>
-		          </tr>
-		        </thead>
-		        <tbody>
-		          <tr>
-		            <th scope="row">1</th>
-		            <td>Maça</td>
-		            <td>2,00</td>
-		            <td>20</td>
-		            <td>40,00</td>
-		            <td>Maça branca</td>
-		          </tr>
-		        </tbody>
-		      </table>
-		    </div>
-		  </div>
-		</div>
-
-	  
-	<div>
-		<footer>
-			<div class="footer-copyright text-center py-2"><b>@ 2019, Luíza Crippa</b>
-			</div>
-		</footer>
+		<div class="col-md-12">
+			<div class="display-3"><b><i>Pedidos</b></i></div>
+		</div> 
 	</div>
+	<div class="row cadastro">
+		<div class="col-md-12">
+			<form class="form-group needs-validation justify-content-center" action="index.php" method="post" novalidate>
+				<div class="form-row">
+					<div class="form-group col-md-1">
+						<label for="inputPedido">Pedido: </label>
+						<input type="number" class="form-control" id="inputPedido" readonly placeholder="Número" required="">
+					</div>  
+					<div class="form-group col-md-7">
+						<label for="cliente">Nome do Cliente:</label>
+						<select id="cliente" name="cliente" class="form-control">
+							<option value="">Selecione um cliente</option>          
+
+							<?php 
+							$rs = $pdo->prepare("SELECT * from tb_clientes");
+							if ($rs->execute()) {
+								if ($rs->rowCount() > 0) {
+									while ($row = $rs->fetch(PDO::FETCH_OBJ)) { ?>
+									<option value="<?php echo $row->id_cliente;?>"><?php echo $row->nome;?></option>
+									<?php
+								}
+							}
+						}
+						?>
+					</select>
+
+				</div>
+				<div class="form-group col-md-2">
+					<label for="codeClient">Código do Cliente:</label>
+					<input type="text" class="form-control" readonly id="codigoCliente" name='codigoCliente' required>
+				</div>
+				<div class="form-group col-md-2 ">
+					<label for="telefone">Telefone: </label><br>
+					<input type="text" class="form-control" readonly maxlength="12" id="telefone" name="telefone" placeholder="(__)_____-____" required>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-4">
+					<label for="inputAddress">Endereço: </label>
+					<input type="text" class="form-control" id="endereco" name="endereco" readonly required="">
+				</div>
+				<div class="form-group col-md-1">
+					<label for="numero">Número: </label>
+					<input type="text" class="form-control" id="numero" name="numero" readonly>
+				</div>
+				<div class="form-group col-md-2">
+					<label for="cep">CEP: </label>
+					<input type="text" class="form-control" name="cep" readonly id="cep">
+				</div>
+				<div class="form-group col-md-2">
+					<label for="bairro">Bairro: </label>
+					<input type="text" class="form-control" name="bairro" readonly id="bairro">
+				</div>
+				<div class="form-group col-md-3">
+					<label for="cidade">Cidade: </label>
+					<input type="text" class="form-control" name="cidade" readonly id="cidade">
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="form-group col-md-9">
+					<label for="obs">Obs.: </label>
+					<input type="text" class="form-control" id="obs" readonly placeholder="Digite aqui sua observação do endereço" name="obs" required>
+				</div>
+				<div class="form-group col-md-3">
+					<label for="inputData">Data/Hora Local: </label>
+					<input type="datetime-local" class="form-control" id="inputData" name="data" value="<?php echo date('Y-m-d\TH:i'); ?>" required readonly>
+				</div>
+			</div>
+			<hr>
+
+			<div id="origem" class="form-row">
+				<div class="form-group col-md-3">
+					<label for="produtos">Descrição: </label>
+					<select id="produtos" name="produtos" class="form-control" required>
+						<option value="">Selecione um Produto</option>                  
+						<?php 
+						$query = "SELECT * FROM tb_produtos";
+						$result = mysqli_query($db, $query);
+						while ($row = mysqli_fetch_object($result)) { ?>
+						<option value="<?php echo $row->id_produto; ?>"><?php echo $row->descricao; ?></option>                  
+						<?php }?>
+					</select>
+				</div>
+
+				<div class="form-group col-md-1">
+					<label for="codigoProduto">Código: </label>
+					<input type="text" class="form-control" placeholder="Código" readonly id="codigoProduto" name="codigo" required>
+				</div>
+				<div class="form-group col-md-4">
+					<label for="ObsProduto">Obs.: </label>
+					<input type="text" class="form-control" name="obsProduto" required>
+				</div>
+				<div class="form-group col-md-1">
+					<label for="preco">Preço R$: </label>
+					<input type="text" class="form-control" placeholder="R$: " id="preco" name="preco" readonly required>
+				</div>
+				<div class="form-group col-md-1">
+					<label for="quantidade">Quant: </label>
+					<input type="number" class="form-control" id="quantidade" name="quantidade" required="required" onChange="calculaPreco()">
+				</div>
+				<div class="form-group col-md-1">
+					<label for="total">Total: R$ </label>
+					<input type="text" class="form-control" readonly id="total" name="total" required>
+				</div>
+				<div class="form-group col-md-1">
+					<label for="total">. </label>
+					<button type="button" class="form-control" onclick="removerCampos(this);">X</button>
+				</div>
+
+			</div>
+			<div id="destino">
+
+			</div>
+			<div id="botao">
+				<button type="submit" class="btn btn-danger mb-2" id="botao" name="btnadicionarPedido">Concluir Pedido</button>
+			</div>
+			<hr>
+		</form>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th scope="col">Nº Pedido:</th>
+					<th scope="col">Comprador:</th>
+					<th scope="col">Produto:</th>
+					<th scope="col">Preço:</th>
+					<th scope="col">Qtd:</th>
+					<th scope="col">Total R$:</th>
+					<th scope="col">Observações:</th>
+					<th scope="col">Relatório:</th>
+					<th scope="col">Deletar</th>
+				
+				</tr>
+			</thead>
+			<tbody>
+				<?php
+        $rs = $pdo->prepare("SELECT a.id_pedido,d.nome,c.descricao,c.valor as valorUnitario,b.quantidade,b.valor,b.observacao 
+        FROM tb_pedidos as a INNER JOIN 
+        tb_pedido_produtos as b on a.id_pedido = b.id_pedido INNER JOIN
+        tb_produtos as c on b.id_produto = c.id_produto INNER JOIN
+        tb_clientes as d on d.id_cliente=a.id_cliente ORDER BY `a`.`id_pedido` ASC");
+        if ($rs->execute()) {
+          if ($rs->rowCount() > 0) {
+            while ($row = $rs->fetch(PDO::FETCH_OBJ)) {
+              echo "<tr>";
+              echo "<th scope='row'>{$row->id_pedido}</td>";
+              echo "<td scope='row'>{$row->nome}</td>";
+              echo "<td>{$row->descricao}</td>";
+              echo "<td>{$row->valorUnitario}</td>";
+              echo "<td>{$row->quantidade}</td>";
+              echo "<td>{$row->valor}</td>";
+              echo "<td>{$row->observacao}</td>";
+              
+              echo "<td><form action='gerarPDF.php' method='POST' name='{$row->id_pedido}'>
+              <input type='hidden' name='idPedido' value='{$row->id_pedido}'>
+              <button class='btn btn-secundary' type='submit' name='Pedido'><i class='fas fa-edit'></i> Ver Pedido</button>
+              </form></td>";
+
+              echo "<td><form action='acaoPedido.php' method='POST' name='{$row->id_pedido}'>
+              <input type='hidden' name='idPedido' value='{$row->id_pedido}'>
+              <button class='btn btn-secundary' type='submit' name='deletaPedido'>X</button>
+              </form></td>";
+
+              echo "</tr>";
+            }
+          } 
+        }
+        ?>
+			</tbody>
+		</table>
+	</div>
+</div>
+</div>
+
+<div>
+	<footer>
+		<div class="footer-copyright text-center py-2"><b>@ 2019, Luíza Crippa</b>
+		</div>
+	</footer>
+</div>

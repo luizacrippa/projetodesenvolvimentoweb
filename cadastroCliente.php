@@ -11,7 +11,7 @@
 <body>
 
 
-<div class="container">
+<div class="container-fluid">
   <div class="row formulario">
     <div class="col-md-12">
       <div class="display-4"><b><i>Clientes</i></b></div>
@@ -41,25 +41,50 @@
           <th scope="col">Estado:</th>
           <th scope="col">Telefone:</th>
           <th scope="col">E-mail:</th>
-          <th scope="col"><button type="submit" class="btn btn-warning">Editar</button></th>
+          <th scope="col"><button type="submit" class="btn btn-light"><i class="far fa-trash-alt"></i></button></th>
+          <th scope="col"><button type="submit" class="btn btn-light"><i class="fas fa-edit"></i></button></th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Luíza Crippa</td>
-          <td>Rua Ex-Combatentes da FEB</td>
-          <td>152</td>
-          <td>Casa</td>
-          <td>88501-420</td>
-          <td>Centro</td>
-          <td>Lages</td>
-          <td>SC</td>
-          <td>4899963-8621</td>
-          <td>luucrippa@gmail.com</td>
-          <td><button type="submit" name="editar" class="btn btn-warning"> Editar: 1</button></td>
-        </tr>
-      </tbody>
+
+        <?php
+          //busca os clientes
+            $filtro = array('auxNome' => '%%');
+            $rs = $pdo->prepare("SELECT id_cliente,nome,endereco,numero,
+                observacao,cep,bairro,cidade,estado,telefone,email 
+                FROM tb_clientes WHERE nome LIKE :auxNome");
+
+            if ($rs->execute($filtro)) {
+                  if ($rs->rowCount() > 0) {
+                    while ($row = $rs->fetch(PDO::FETCH_OBJ)) {
+                      echo "<tr>";
+                      echo "<th scope='row'>{$row->id_cliente}</td>";
+                      echo "<td>{$row->nome}</td>";
+                      echo "<td>{$row->endereco}</td>";
+                      echo "<td>{$row->numero}</td>";
+                      echo "<td>{$row->observacao}</td>";
+                      echo "<td>{$row->cep}</td>";
+                      echo "<td>{$row->bairro}</td>";
+                      echo "<td>{$row->cidade}</td>";
+                      echo "<td>{$row->estado}</td>";
+                      echo "<td>{$row->telefone}</td>";
+                      echo "<td>{$row->email}</td>";
+
+                  echo "<td><form action='index.php' method='POST' name='delCliente{$row->id_cliente}'>
+                      <input type='hidden' name='idCliente' value='{$row->id_cliente}'>
+                      <button class='btn btn-danger' type='submit' name='deletaCliente'><i class='far fa-trash-alt'></i></button>
+                      </form></td>";
+                      echo "<td><form action='index.php' method='POST' name='editCliente{$row->id_cliente}'>
+                      <input type='hidden' name='idCliente' value='{$row->id_cliente}'>
+                      <button class='btn btn-danger' type='submit' name='editaCliente'><i class='fas fa-edit'></i></button>
+                      </form></td>";
+                      echo "</tr>";
+                    }
+                  } 
+                }
+                 echo "</tbody>";
+        ?>
+
     </table>
   </div>
 </div>
